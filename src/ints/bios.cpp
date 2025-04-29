@@ -11910,6 +11910,10 @@ public:
                 memset(GetMemBase()+(640<<10),0,(t_conv-640)<<10);
             }
         }
+        else if (machine == MCH_PC98) {
+            mlimit = 1024;       /* 640KB + 384KB = 0x00000-0xDFFFF */
+            if (t_conv > mlimit) t_conv = mlimit;
+        }
         else {
             if (t_conv > 640) t_conv = 640;
         }
