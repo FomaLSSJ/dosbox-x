@@ -11893,6 +11893,8 @@ public:
                 mlimit = 736;       /* 640KB + 96KB = 0x00000-0xB7FFF */
             else if (machine == MCH_HERC || machine == MCH_MDA)
                 mlimit = 704;       /* 640KB + 64KB = 0x00000-0xAFFFF */
+            else if (machine == MCH_PC98)
+                mlimit = 768;       /* 640KB + 128KB = 0x00000-0xBFFFF */
 	    else if (machine == MCH_TANDY)
                 mlimit = 768;       /* 640KB + 128KB = 0x00000-0xBFFFF */
 
@@ -11909,10 +11911,6 @@ public:
                 MEM_map_RAM_physmem(0xA0000,(t_conv<<10)-1);
                 memset(GetMemBase()+(640<<10),0,(t_conv-640)<<10);
             }
-        }
-        else if (machine == MCH_PC98) {
-            mlimit = 1024;       /* 640KB + 384KB = 0x00000-0xDFFFF */
-            if (t_conv > mlimit) t_conv = mlimit;
         }
         else {
             if (t_conv > 640) t_conv = 640;
